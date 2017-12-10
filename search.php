@@ -101,10 +101,6 @@ $update=json_decode($update,TRUE);
       }
         echo "</div>";
       ?>
-<<<<<<< HEAD
-=======
-      //wow
->>>>>>> e2601e5c1c870f592dfd9d27432d3bb857e794e2
     </div>
 
   </body>
