@@ -101,7 +101,6 @@ $update=json_decode($update,TRUE);
       }
         echo "</div>";
       ?>
-      
     </div>
 
   </body>
