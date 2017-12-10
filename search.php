@@ -1,15 +1,15 @@
 <?php
-if(isset($_GET['cosa']))
+if(isset($_GET['cosa'])&&$_GET['cosa']!="")
   $cosa=$_GET['cosa'];
 else {
   //alert("Errore nei parametri inseriti");
-  header("location: /index.php?error=url");
+  header("location: http://interplaces.robertoarnoldi.altervista.org/interplaces/?error=url");
 }
-if(isset($_GET['dove']))
+if(isset($_GET['dove'])&&$_GET['dove']!="")
   $dove=$_GET['dove'];
 else {
   //alert("Errore nei parametri inseriti");
-  header("location: /index.php?error=url");
+  header("location: http://interplaces.robertoarnoldi.altervista.org/interplaces/?error=url");
 }
 
 
@@ -21,14 +21,8 @@ $URL=$BASE_WEBSITE.'search?client_id='.$CLIENT_ID.'&client_secret='.$CLIENT_SECR
 $URL= str_replace(' ', '%20', $URL);
 
 $update=file_get_contents($URL);
+
 $update=json_decode($update,TRUE);
-
-$venue_name=$update['response']['venues'][0]['name'];
-$venue_loc_lat=$update['response']['venues'][0]['location']['lat'];
-$venue_loc_long=$update['response']['venues'][0]['location']['long'];
-$venue_hereNow=$update['response']['venues'][0]['hereNow']['count'];
-
-//echo $update;
 //break;
 ?>
 <html>
@@ -49,6 +43,7 @@ $venue_hereNow=$update['response']['venues'][0]['hereNow']['count'];
       $j=0;
       echo "<div class=\"card-group\">";
       $update=$update['response'];
+
       foreach ($update['venues'] as $key=>$venue)
       {
         //venue info
@@ -77,34 +72,34 @@ $venue_hereNow=$update['response']['venues'][0]['hereNow']['count'];
         {
           $venue_photo="https://www.gumtree.com/static/1/resources/assets/rwd/images/orphans/a37b37d99e7cef805f354d47.noimage_thumbnail.png";
         }
-        //echo $venue_photo;
+
         if($i%4==0)
         {
-          echo "<div class=\"row\">";
+          echo "<div class=\"row\" style=\"width:100%;margin-left:0 !important;padding-bottom:10px;\">";
           $j=0;
         }
-        echo "<div class=\"col-md-3\">
+        echo "<div class=\"col-lg-3\">
                 <div class=\"card\">
                   <img class=\"card-img-top\" src=\"$venue_photo\" alt=\"Immagine del luogo\">
                   <div class=\"card-body\">
                     <h4 class=\"card-title\">$venue_name</h4>
+                    <ul class=\"list-group list-group-flush\">
+                      <li class=\"list-group-item\"><b>Telefono: </b>$venue_phone</li>
+                      <li class=\"list-group-item\"><b>Indirizzo: </b>$venue_address</li>
+                      <li class=\"list-group-item\"><b>Città: </b>$venue_city</li>
+                      <li class=\"list-group-item\"><b>Auttualmente qua </b>$venue_hereNow persone</li>
+                    </ul>
                   </div>
-                  <ul class=\"list-group list-group-flush\">
-                    <li class=\"list-group-item\"><b>Telefono: </b>$venue_phone</li>
-                    <li class=\"list-group-item\"><b>Indirizzo: </b>$venue_address</li>
-                    <li class=\"list-group-item\"><b>Città: </b>$venue_city</li>
-                    <li class=\"list-group-item\"><b>Auttualmente qua </b>$venue_hereNow persone</li>
-                  </ul>
                 </div>
               </div>";
 
         if($j==3)
-          echo "</div><br>";
+          echo "</div>";
 
         $i++;
         $j++;
       }
-      echo "</div>";
+        //echo "</div>";
       ?>
     </div>
   </body>

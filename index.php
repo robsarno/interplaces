@@ -14,7 +14,7 @@
     <?php
     require("./nav.php");
     if(isset($_GET['error']))
-      echo "<script type='text/javascript'>alert('Errore! I parametri sembrano esser stati modificati.');</script>";
+      echo "<script type='text/javascript'>alert('Errore! I parametri sembrano esser stati modificati o non esser stati completati.');</script>";
     ?>
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
