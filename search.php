@@ -101,20 +101,7 @@ $update=json_decode($update,TRUE);
       }
         echo "</div>";
       ?>
-      <div class="row col-lg-12" style="margin-left:0 !important;margin-bottom:20px;margin-top:20px;">
-        <div id="map" style="width:100%;height:700px"></div>
-        <script>
-        function myMap() {
-          var mapOptions = {
-              center: new google.maps.LatLng(51.5, -0.12),
-              zoom: 10,
-              mapTypeId: google.maps.MapTypeId.HYBRID
-          }
-          var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-        }
-        </script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFzbCkKQAY0-z_HZ-jB-ptomQEH5pWo4w&callback=myMap" type="text/javascript"></script>
-      </div>
+      
     </div>
 
   </body>
