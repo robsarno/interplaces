@@ -19,7 +19,11 @@ $CLIENT_SECRET="STCQN42LRMGGPTOGG5UQGNXACRDGWWYSNOYAL2PKJPMFYBVU";
 
 $URL=$BASE_WEBSITE.'search?client_id='.$CLIENT_ID.'&client_secret='.$CLIENT_SECRET.'&v='.date("Ymd").'&near='.$dove.'&query='.$cosa.'&limit=10';
 
+$URL= str_replace(' ', '%20', $URL);
+
 $update=file_get_contents($URL);
+
+
 $update=json_decode($update,TRUE);
 
 $venue_name=$update['response']['venues'][0]['name'];
@@ -32,11 +36,16 @@ $venue_hereNow=$update['response']['venues'][0]['hereNow']['count'];
 ?>
 <html>
   <?php require("./head.php")?>
+  <style>
+  body{
+    background-color:  #80bdff !important;
+  }
+  </style>
   <body>
     <?php require("./nav.php")?>
     <br>
     <div class="container-fluid">
-      <h5 class="text-center">Ecco i risultati per <b><?php echo $cosa; ?></b> vicino a <b><?php echo $dove; ?></b></h5>
+      <h5 class="text-center text-white">Ecco i risultati per "<b><?php echo $cosa; ?>"</b> vicino a "<b><?php echo $dove; ?></b>"</h5>
       <hr>
       <?php
       $i=0;
@@ -57,6 +66,9 @@ $venue_hereNow=$update['response']['venues'][0]['hereNow']['count'];
         $venue_address=$venue['location']['address'];
         if($venue_address=="")
           $venue_address="-";
+        $venue_city=$venue['location']['city'];
+        if($venue_city=="")
+          $venue_city="-";
 
         //ricerca foto
         $URL=$BASE_WEBSITE.$venue_id.'/photos?client_id='.$CLIENT_ID.'&client_secret='.$CLIENT_SECRET.'&v='.date("Ymd");
@@ -83,6 +95,7 @@ $venue_hereNow=$update['response']['venues'][0]['hereNow']['count'];
                   <ul class=\"list-group list-group-flush\">
                     <li class=\"list-group-item\"><b>Telefono: </b>$venue_phone</li>
                     <li class=\"list-group-item\"><b>Indirizzo: </b>$venue_address</li>
+                    <li class=\"list-group-item\"><b>Città: </b>$venue_city</li>
                     <li class=\"list-group-item\"><b>Auttualmente qua </b>$venue_hereNow persone</li>
                   </ul>
                 </div>
