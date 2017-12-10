@@ -3,13 +3,13 @@ if(isset($_GET['cosa']))
   $cosa=$_GET['cosa'];
 else {
   //alert("Errore nei parametri inseriti");
-  header("location: /index.php");
+  header("location: /index.php?error=url");
 }
 if(isset($_GET['dove']))
   $dove=$_GET['dove'];
 else {
   //alert("Errore nei parametri inseriti");
-  header("location: /index.php");
+  header("location: /index.php?error=url");
 }
 
 
@@ -18,12 +18,9 @@ $CLIENT_ID="TLP33XZ2XLGU2SKN50SPMU40MAXDUELATV45VPPPGRLSQEQE";
 $CLIENT_SECRET="STCQN42LRMGGPTOGG5UQGNXACRDGWWYSNOYAL2PKJPMFYBVU";
 
 $URL=$BASE_WEBSITE.'search?client_id='.$CLIENT_ID.'&client_secret='.$CLIENT_SECRET.'&v='.date("Ymd").'&near='.$dove.'&query='.$cosa.'&limit=10';
-
 $URL= str_replace(' ', '%20', $URL);
 
 $update=file_get_contents($URL);
-
-
 $update=json_decode($update,TRUE);
 
 $venue_name=$update['response']['venues'][0]['name'];
