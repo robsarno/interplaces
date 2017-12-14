@@ -14,8 +14,8 @@ else {
 
 
 $BASE_WEBSITE="https://api.foursquare.com/v2/venues/";
-$CLIENT_ID="TLP33XZ2XLGU2SKN50SPMU40MAXDUELATV45VPPPGRLSQEQE";
-$CLIENT_SECRET="STCQN42LRMGGPTOGG5UQGNXACRDGWWYSNOYAL2PKJPMFYBVU";
+$CLIENT_ID="YOUR_CLIENT_ID";
+$CLIENT_SECRET="YOUR_CLIENT_SECRET";
 
 $URL=$BASE_WEBSITE.'search?client_id='.$CLIENT_ID.'&client_secret='.$CLIENT_SECRET.'&v='.date("Ymd").'&near='.$dove.'&query='.$cosa.'&limit=10';
 $URL= str_replace(' ', '%20', $URL);
